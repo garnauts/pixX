@@ -24,5 +24,5 @@ $_['help_total']         = 'O valor mínimo que o pedido deve alcançar para que
 $_['error_permission']   = 'Atenção: Você não tem permissão para modificar a extensão Pix X!';
 $_['error_payable']      = 'Chave Pix é obrigatório!';
 
-$_['entry_default_image'] = 'Load QRCODE PIX';
+$_['entry_default_image'] = 'Carregar QRCODE PIX';
 $_['entry_default_imageinfo'] = 'Será utilizada esta imagem para QRCODE do PIX. Se não carregada, a imagem não vai aparecer.';

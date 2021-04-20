@@ -12,8 +12,8 @@ class ControllerExtensionPaymentPixx extends Controller {
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && isset($this->request->files['payment_pixx_default_image']) && $this->imageValidation($this->request->files['payment_pixx_default_image']) && $this->validate()) {
 
 			if(isset($this->request->files['payment_pixx_default_image']) && $this->request->files['payment_pixx_default_image']['name']) {
-				move_uploaded_file($this->request->files['payment_pixx_default_image']["tmp_name"], DIR_IMAGE . "payment/pixx/" . $this->request->files['payment_pixx_default_image']["name"]);
-				$this->request->post['payment_pixx_default_image_name'] = "payment/pixx/".$this->request->files['payment_pixx_default_image']["name"];
+				move_uploaded_file($this->request->files['payment_pixx_default_image']["tmp_name"], DIR_IMAGE . $this->request->files['payment_pixx_default_image']["name"]);
+				$this->request->post['payment_pixx_default_image_name'] = $this->request->files['payment_pixx_default_image']["name"];
 			}
 
 			if (!isset($this->request->post['payment_pixx_default_image_name']) || !trim($this->request->post['payment_pixx_default_image_name'])) {
