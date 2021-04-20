@@ -7,9 +7,9 @@
   <link>https://www.linkedin.com/in/garnauts/</link>
   <file path="catalog/controller/checkout/success.php">
     <operation error="skip">
-      <search><![CDATA[$data['text_message'] = sprintf($this->language->get('text_customer'), $this->load->controller('common/header_add_on/getUserFirstName'), $this->url->link('account/account', '', true), $this->url->link('account/order', '', true), $this->url->link('account/download', '', true), $this->url->link('information/contact'));]]></search>
-      <add position="after"><![CDATA[
-            $data['text_message'] .= $this->getPixMessage();
+      <search><![CDATA[$this->response->setOutput($this->load->view('common/success', $data));]]></search>
+      <add position="before"><![CDATA[
+        $data['text_message'] .= $this->getPixMessage();
       ]]></add>
     </operation>
     <operation error="skip">
@@ -31,4 +31,5 @@
     </operation>
   </file>
 </modification>
+
 
