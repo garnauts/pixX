@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+  <name>PixX para pagamento por PIX para OpenCart 3.0</name>
+  <code>pixX</code>
+  <version>1.0.0</version>
+  <author>Gilberto Carlos Arnauts</author>
+  <link>https://www.linkedin.com/in/garnauts/</link>
+  <file path="catalog/controller/checkout/success.php">
+    <operation error="skip">
+      <search><![CDATA[$data['text_message'] = sprintf($this->language->get('text_customer'), $this->load->controller('common/header_add_on/getUserFirstName'), $this->url->link('account/account', '', true), $this->url->link('account/order', '', true), $this->url->link('account/download', '', true), $this->url->link('information/contact'));]]></search>
+      <add position="after"><![CDATA[
+            $data['text_message'] .= $this->getPixMessage();
+      ]]></add>
+    </operation>
+    <operation error="skip">
+      <search><![CDATA[$this->response->setOutput($this->load->view('common/success', $data));]]></search>
+      <add position="after"><![CDATA[
+    }
+    
+    private function getPixMessage(){
+	    $pix_message = "";
+	    if($this->config->get('payment_pixx_payable')){
+		    $this->load->language('extension/payment/pixx');
+		    $pix_message = sprintf($this->language->get('text_customer_pix'), $this->config->get('payment_pixx_payable'));
+		    if($this->config->get('payment_pixx_default_image_name')){
+    			$pix_message .= '<p><img src="image/' . $this->config->get('payment_pixx_default_image_name') . '" title=" " alt=" "/></p>';
+		    }
+		}
+		return $pix_message;
+	]]></add>
+    </operation>
+  </file>
+</modification>
+
